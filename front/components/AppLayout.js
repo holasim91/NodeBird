@@ -15,20 +15,20 @@ const AppLayout = ({ children }) => {
   return (
     <>
       <Menu mode="horizontal">
-        <Menu.Item>
+        <Menu.Item key="home">
           <Link href="/">
             <a>노드버드</a>
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="profile">
           <Link href="/profile">
             <a>프로필</a>
           </Link>
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="search">
           <SearchInput enterButton />
         </Menu.Item>
-        <Menu.Item>
+        <Menu.Item key="signup">
           <Link href="/signup">
             <a>회원가입</a>
           </Link>
@@ -44,14 +44,13 @@ const AppLayout = ({ children }) => {
           )}
         </Col>
         <Col xs={24} md={12}>
-          가운데 메뉴
+          {children}
         </Col>
         {/* 내 정보 */}
         <Col xs={24} md={6}>
           <a href="">Made By HyuninSim</a>
         </Col>
       </Row>
-      {children}
     </>
   );
 };
