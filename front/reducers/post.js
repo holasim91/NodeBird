@@ -9,7 +9,7 @@ export const initialState = {
       content: "더워서 산책가기 싫다 #산책 #개더워",
       Images: [
         {
-          src: "https://img.yul-do.com/files/attach/images/2021/03/30/4603811c0f2eccc3ac031496e3ff295c.jpg",
+          src: "https://pbs.twimg.com/media/D7vVFgsV4AAcloV.jpg",
         },
         {
           src: "https://i.pinimg.com/originals/70/98/dd/7098dd7e46ee7b223ce933aa2557ebca.jpg",

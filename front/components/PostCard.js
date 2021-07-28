@@ -1,4 +1,4 @@
-import { Button, Card, Popover } from "antd";
+import { Button, Card, Popover, List, Comment } from "antd";
 import React, { useCallback, useState } from "react";
 import {
   EllipsisOutlined,
@@ -10,6 +10,8 @@ import {
 import { useSelector } from "react-redux";
 import Avatar from "antd/lib/avatar/avatar";
 import PostImages from "./PostImages";
+import CommentForm from "./CommentForm";
+import PostCardContent from "./PostCardContent";
 
 const PostCard = ({ post }) => {
   const [liked, setLiked] = useState(false);
@@ -62,13 +64,29 @@ const PostCard = ({ post }) => {
         <Card.Meta
           avatar={<Avatar>{User.nickname[0]}</Avatar>}
           title={User.nickname}
-          description={content}
+          description={<PostCardContent postData={content} />}
         />
         <Button></Button>
       </Card>
-      {commentFormOpened && <div>댓글!</div>}
-      {/* <CommentForm />
-      <Comments /> */}
+      {commentFormOpened && (
+        <>
+          <CommentForm post={post} />
+          <List
+            header={`${post.Comments.length} 개의 댓글`}
+            itemLayout="horizontal"
+            dataSource={post.Comments}
+            renderItem={(item) => (
+              <li>
+                <Comment
+                  author={item.User.nickname}
+                  avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                  content={item.content}
+                />
+              </li>
+            )}
+          />
+        </>
+      )}
     </div>
   );
 };
