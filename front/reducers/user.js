@@ -1,5 +1,7 @@
 export const initialState = {
   isLoggedIn: false,
+  isLoggingIn: false,
+  isLoggingOut: false,
   me: null,
   signUpData: {},
   loginData: {},
@@ -30,56 +32,57 @@ export const loginRequestAction = (data) => {
     data,
   };
 };
-export const loginSuccessAction = (data) => {
-  console.log(data);
-  return {
-    type: "LOG_IN_SUCCESS",
-    data,
-  };
-};
-export const loginFailureAction = (data) => {
-  console.log(data);
-  return {
-    type: "LOG_IN_FAILURE",
-    data,
-  };
-};
-export const logoutRequestAction = (data) => {
-  console.log(data);
+export const logoutRequestAction = () => {
+  console.log();
   return {
     type: "LOG_OUT_REQUEST",
-    data,
-  };
-};
-export const logoutSuccessAction = (data) => {
-  console.log(data);
-  return {
-    type: "LOG_OUT_SUCCESS",
-    data,
-  };
-};
-export const logoutFailureAction = (data) => {
-  console.log(data);
-  return {
-    type: "LOG_OUT_FAILURE",
-    data,
   };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOG_IN":
+    case "LOG_IN_REQUEST":
       return {
         ...state,
-        me: action.data,
-        isLoggedIn: true,
+        isLoggedIn: false,
+        isLoggingIn: true,
       };
-    case "LOG_OUT":
+    case "LOG_IN_SUCCESS":
+      return {
+        ...state,
+        me: { ...action.data, nickname: "숑이" },
+        isLoggedIn: true,
+        isLoggingIn: false,
+      };
+    case "LOG_IN_FAILURE":
+      return {
+        ...state,
+        isLogging: false,
+        isLoggingIn: false,
+      };
+    case "LOG_OUT_REQUEST":
+      return {
+        ...state,
+        ...state.user,
+        me: null,
+        isLoggedIn: true,
+        isLoggingOut: false,
+      };
+    case "LOG_OUT_SUCCESS":
       return {
         ...state,
         ...state.user,
         me: null,
         isLoggedIn: false,
+        isLoggingOut: false,
+      };
+    case "LOG_OUT_FAILURE":
+      return {
+        ...state,
+        ...state.user,
+        me: null,
+        isLoggedIn: false,
+        isLoggingOut: true,
       };
     default:
       return state;

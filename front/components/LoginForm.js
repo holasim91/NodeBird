@@ -3,8 +3,8 @@ import { Button, Form, Input } from "antd";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
-import { loginAction } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequestAction } from "../reducers/user";
 
 const FormWrapper = styled(Form)`
   padding: 10px;
@@ -20,8 +20,9 @@ const LoginForm = () => {
   const [password, onChangePassword] = useInput("");
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    dispatch(loginAction({ id, password }));
+    dispatch(loginRequestAction({ id, password }));
   }, [id, password]);
+  const { isLoggingIn } = useSelector((state) => state.user);
   return (
     <FormWrapper onFinish={onSubmitForm}>
       <div>
@@ -41,7 +42,7 @@ const LoginForm = () => {
         />
       </div>
       <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={false}>
+        <Button type="primary" htmlType="submit" loading={isLoggingIn}>
           로그인
         </Button>
         <Link href="/signup">회원가입</Link>
