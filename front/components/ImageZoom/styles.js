@@ -1,21 +1,19 @@
-import styled from "@emotion/styled";
-import { Global, css } from "@emotion/react";
-import { CloseOutlined } from "@ant-design/icons";
+import styled from '@emotion/styled';
+import { Global, css } from '@emotion/react';
+import { CloseOutlined } from '@ant-design/icons';
 
-export const GlobalStyles = () => {
-  return (
-    <Global
-      styles={css`
-        .slick-slide {
-          display: inline-block;
-        }
-        .ant-card-cover {
-          transform: none !important;
-        } //화면이 폼 내에만 있는 버그 수정
-      `}
-    />
-  );
-};
+export const GlobalStyles = () => (
+  <Global
+    styles={css`
+      .slick-slide {
+        display: inline-block;
+      }
+      .ant-card-cover {
+        transform: none !important;
+      } //화면이 폼 내에만 있는 버그 수정
+    `}
+  />
+);
 
 export const Ovelay = styled.div`
   position: fixed;

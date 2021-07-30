@@ -1,8 +1,8 @@
-import { PlusOutlined } from "@ant-design/icons";
-import React from "react";
-import { useState } from "react";
-import { useCallback } from "react";
-import ImageZoom from "./ImageZoom";
+import { PlusOutlined } from '@ant-design/icons';
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
+
+import ImageZoom from './ImageZoom';
 
 const PostImages = ({ images }) => {
   const [showImagesZoom, setShowImagesZoom] = useState(false);
@@ -16,7 +16,7 @@ const PostImages = ({ images }) => {
     return (
       <>
         <img
-          role="presentation" //스크린 리더에서 클릭할 필요가 없는 이미지만 적어주자
+          role="presentation" // 스크린 리더에서 클릭할 필요가 없는 이미지만 적어주자
           src={images[0].src}
           alt={images[0].src}
           onClick={onZoom}
@@ -29,15 +29,15 @@ const PostImages = ({ images }) => {
     return (
       <>
         <img
-          role="presentation" //스크린 리더에서 클릭할 필요가 없는 이미지만 적어주자
-          style={{ width: "50%", display: "inline-block" }}
+          role="presentation" // 스크린 리더에서 클릭할 필요가 없는 이미지만 적어주자
+          style={{ width: '50%', display: 'inline-block' }}
           src={images[0].src}
           alt={images[0].src}
           onClick={onZoom}
         />
         <img
           role="presentation"
-          style={{ width: "50%", display: "inline-block" }}
+          style={{ width: '50%', display: 'inline-block' }}
           src={images[1].src}
           alt={images[1].src}
           onClick={onZoom}
@@ -50,7 +50,7 @@ const PostImages = ({ images }) => {
     <>
       <img
         role="presentation"
-        style={{ width: "50%", display: "inline-block" }}
+        style={{ width: '50%', display: 'inline-block' }}
         src={images[0].src}
         alt={images[0].src}
         onClick={onZoom}
@@ -58,10 +58,10 @@ const PostImages = ({ images }) => {
       <div
         role="presentation"
         style={{
-          display: "inline-block",
-          width: "50%",
-          textAlign: "center",
-          verticalAlign: "middle",
+          display: 'inline-block',
+          width: '50%',
+          textAlign: 'center',
+          verticalAlign: 'middle',
         }}
         onClick={onZoom}
       >
@@ -72,6 +72,10 @@ const PostImages = ({ images }) => {
       {showImagesZoom && <ImageZoom image={images} onClose={onClose} />}
     </>
   );
+};
+
+PostImages.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PostImages;
