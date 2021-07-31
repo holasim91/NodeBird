@@ -8,13 +8,15 @@ import {
   MessageOutlined,
   RetweetOutlined,
 } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Avatar from 'antd/lib/avatar/avatar';
 import PostImages from './PostImages';
 import CommentForm from './CommentForm';
 import PostCardContent from './PostCardContent';
+import { REMOVE_POST_REQUEST } from '../reducers/actions';
 
 const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
   const onToggleLike = useCallback(() => setLiked((prev) => !prev), []);
   const [commentFormOpened, setCommentFormOpened] = useState(false);
@@ -26,7 +28,13 @@ const PostCard = ({ post }) => {
   const { me } = useSelector((state) => state.user);
   const id = me?.id;
   const { Images, User, content } = post;
-
+  const { removePostLoading } = useSelector((state) => state.post);
+  const onRemovePost = useCallback(() => {
+    dispatch({
+      type: REMOVE_POST_REQUEST,
+      data: post.id,
+    });
+  }, []);
   return (
     <div style={{ marginBottom: '20px' }}>
       <Card
@@ -50,7 +58,13 @@ const PostCard = ({ post }) => {
                 {id && User.id ? (
                   <>
                     <Button>수정</Button>
-                    <Button type="danger">삭제</Button>
+                    <Button
+                      type="danger"
+                      loading={removePostLoading}
+                      onClick={onRemovePost}
+                    >
+                      삭제
+                    </Button>
                   </>
                 ) : (
                   <Button>신고</Button>
