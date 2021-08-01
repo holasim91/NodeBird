@@ -28,6 +28,11 @@ export const ADD_POST_TO_ME = 'ADD_POST_TO_ME'; // 내 게시물 추가
 export const REMOVE_POST_OF_ME = 'REMOVE_POST_OF_ME'; // 내 게시물 삭제
 
 /** ************ POST ACTIONS ************* */
+
+export const LOAD_POST_REQUEST = 'LOAD_POST_REQUEST';
+export const LOAD_POST_SUCCESS = 'LOAD_POST_SUCCESS';
+export const LOAD_POST_FAILURE = 'LOAD_POST_FAILURE';
+
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE';

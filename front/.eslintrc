@@ -26,6 +26,9 @@
     "react/jsx-wrap-multilines": "off",
     "object-curly-newline": "off",
     "consistent-return": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off",
+    "no-param-reassign": "off",
+    "indent": "off"
   }
 }

@@ -14,6 +14,7 @@ import PostImages from './PostImages';
 import CommentForm from './CommentForm';
 import PostCardContent from './PostCardContent';
 import { REMOVE_POST_REQUEST } from '../reducers/actions';
+import FollowButton from './FollowButton';
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const PostCard = ({ post }) => {
 
   const { me } = useSelector((state) => state.user);
   const id = me?.id;
-  const { Images, User, content } = post;
+  const { Images, User, Content } = post;
   const { removePostLoading } = useSelector((state) => state.post);
   const onRemovePost = useCallback(() => {
     dispatch({
@@ -75,11 +76,12 @@ const PostCard = ({ post }) => {
             <EllipsisOutlined />
           </Popover>,
         ]}
+        extra={id && <FollowButton post={post} />}
       >
         <Card.Meta
           avatar={<Avatar>{User.nickname[0]}</Avatar>}
           title={User.nickname}
-          description={<PostCardContent postData={content} />}
+          description={<PostCardContent postData={Content} />}
         />
         <Button />
       </Card>
